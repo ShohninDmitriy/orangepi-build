@@ -440,7 +440,7 @@ prepare_host
 # fetch_from_repo <url> <dir> <ref> <subdir_flag>
 
 # ignore updates help on building all images - for internal purposes
-if [[ ${IGNORE_UPDATES} != yes ]]; then
+if [[ ${IGNORE_UPDATES_} != yes ]]; then
 
 	display_alert "Downloading sources" "" "info"
 
