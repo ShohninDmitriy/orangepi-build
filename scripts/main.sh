@@ -469,6 +469,8 @@ if [[ ${IGNORE_UPDATES} != yes ]]; then
 	if [[ ${BOARDFAMILY} == "rockchip-rk3588" && $RELEASE =~ bullseye|bookworm|focal|jammy|raspi ]]; then
 
 		[[ ${BUILD_OPT} == image ]] && fetch_from_repo "https://github.com/orangepi-xunlong/rk-rootfs-build.git" "${EXTER}/cache/sources/rk35xx_packages" "branch:rk35xx_packages"
+		wget -qNP ${EXTER}/cache/sources/rkbin-tools/rk35 https://github.com/orangepi-xunlong/rk-rootfs-build/raw/rkbin-tools/rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.13.bin
+		wget -qNP ${EXTER}/cache/sources/rkbin-tools/rk35 https://github.com/orangepi-xunlong/rk-rootfs-build/raw/rkbin-tools/rk35/rk3588_bl31_v1.42.elf
 
 	fi
 
