@@ -60,9 +60,9 @@ if [[ $BOARD =~ orangepir1plus|orangepir1plus-lts ]]; then
 
 elif [[ $BOARDFAMILY == "rockchip-rk3588" ]]; then
 
-        BOOT_SCENARIO="${BOOT_SCENARIO:=spl-blobs}"
-        DDR_BLOB="${DDR_BLOB:=rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.13.bin}"
-        BL31_BLOB='rk35/rk3588_bl31_v1.42.elf'
+	BOOT_SCENARIO="${BOOT_SCENARIO:=spl-blobs}"
+	DDR_BLOB="${DDR_BLOB:=rk35/rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.13.bin}"
+	BL31_BLOB='rk35/rk3588_bl31_v1.42.elf'
 
 elif [[ $BOARD =~ orangepicm4|orangepi3b ]]; then
 
@@ -265,7 +265,7 @@ family_tweaks()
 
 	[[ "$BRANCH" =~ legacy|current ]] && rk3399_gpu_vpu_tweaks
 	[[ "$BRANCH" =~ legacy && $BOARDFAMILY == "rockchip-rk3588" ]] && rk35xx_gpu_vpu_tweaks
-	[[ "$BRANCH" == legacy && $BOARDFAMILY == "rockchip-rk356x" ]] && rk356x_gpu_vpu_tweaks
+	[[ "$BRANCH" == legacy && $BOARDFAMILY == "rockchip-rk356x" ]] && rk35xx_gpu_vpu_tweaks
 
 	#if [[ ${BOARD} == orangepi800 && ${SELECTED_CONFIGURATION} == desktop && ${RELEASE} =~ bullseye|bookworm ]]; then
 
