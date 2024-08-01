@@ -1869,7 +1869,7 @@ show_checklist_variables ()
 
 install_wiringop()
 {
-	install_deb_chroot "$EXTER/cache/debs/arm64/wiringpi_2.53.deb"
+	install_deb_chroot "$EXTER/cache/debs/arm64/wiringpi_2.54.deb"
 	chroot "${SDCARD}" /bin/bash -c "apt-mark hold wiringpi" >> "${DEST}"/${LOG_SUBPATH}/install.log 2>&1
 
 	if [[ ${IGNORE_UPDATES} != yes ]]; then
@@ -1901,11 +1901,11 @@ install_docker() {
 		;;
 	esac
 
-	if [[ ${SELECTED_CONFIGURATION} == desktop ]]; then
+	#if [[ ${SELECTED_CONFIGURATION} == desktop ]]; then
 		mirror_url=https://repo.huaweicloud.com
-	else
-		mirror_url=https://mirrors.aliyun.com
-	fi
+	#else
+	#	mirror_url=https://mirrors.aliyun.com
+	#fi
 
 	chroot "${SDCARD}" /bin/bash -c "curl -fsSL ${mirror_url}/docker-ce/linux/${distributor_id}/gpg | apt-key add -"
 	echo "deb [arch=${ARCH}] ${mirror_url}/docker-ce/linux/${distributor_id} ${RELEASE} stable" > "${SDCARD}"/etc/apt/sources.list.d/docker.list
