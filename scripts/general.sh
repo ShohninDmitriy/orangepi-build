@@ -1875,8 +1875,8 @@ install_wiringop()
 
 	if [[ ${IGNORE_UPDATES} != yes ]]; then
 
-		fetch_from_repo "https://github.com/ShohninDmitriy/wiringOP.git" "${EXTER}/cache/sources/wiringOP" "branch:next" "yes"
-		fetch_from_repo "https://github.com/ShohninDmitriy/wiringOP-Python.git" "${EXTER}/cache/sources/wiringOP-Python" "branch:next" "yes"
+		fetch_from_repo "https://github.com/orangepi-xunlong/wiringOP.git" "${EXTER}/cache/sources/wiringOP" "branch:next" "yes"
+		fetch_from_repo "https://github.com/orangepi-xunlong/wiringOP-Python.git" "${EXTER}/cache/sources/wiringOP-Python" "branch:next" "yes"
 
 	fi
 

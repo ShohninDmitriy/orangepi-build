@@ -97,10 +97,10 @@ MAINLINE_KERNEL_DIR="$SRC/kernel"
 
 case $UBOOT_MIRROR in
 	gitee)
-		MAINLINE_UBOOT_SOURCE='https://github.com/ShohninDmitriy/u-boot-orangepi.git'
+		MAINLINE_UBOOT_SOURCE='https://github.com/orangepi-xunlong/u-boot-orangepi.git'
 		;;
 	github)
-		MAINLINE_UBOOT_SOURCE='https://github.com/ShohninDmitriy/u-boot-orangepi.git'
+		MAINLINE_UBOOT_SOURCE='https://github.com/orangepi-xunlong/u-boot-orangepi.git'
 		;;
 	*)
 		MAINLINE_UBOOT_SOURCE='https://source.denx.de/u-boot/u-boot.git'
