@@ -1876,7 +1876,7 @@ show_checklist_variables ()
 
 install_wiringop()
 {
-	install_deb_chroot "$EXTER/cache/debs/${ARCH}/wiringpi_2.57.deb"
+	install_deb_chroot "$EXTER/cache/debs/${ARCH}/wiringpi-2.58-1.deb"
 	chroot "${SDCARD}" /bin/bash -c "apt-mark hold wiringpi" >> "${DEST}"/${LOG_SUBPATH}/install.log 2>&1
 
 	if [[ ${IGNORE_UPDATES} != yes ]]; then
@@ -1936,7 +1936,6 @@ install_docker() {
 	chroot "${SDCARD}" /bin/bash -c "apt-get update"
 	chroot "${SDCARD}" /bin/bash -c "apt-get install -y -qq docker-ce docker-ce-cli containerd.io"
 	chroot "${SDCARD}" /bin/bash -c "sudo groupadd docker"
-	chroot "${SDCARD}" /bin/bash -c "sudo usermod -aG docker ${OPI_USERNAME}"
 
 	run_on_sdcard "systemctl --no-reload disable docker.service"
 }

@@ -462,6 +462,7 @@ if [[ ${IGNORE_UPDATES_} != yes ]]; then
 	if [[ "${BOARD}x" =~ orangepi4x|orangepi4-ltsx|orangepi800x && $RELEASE =~ focal|buster|bullseye|bookworm ]]; then
 
 		[[ ${BUILD_OPT} == image ]] && fetch_from_repo "https://github.com/orangepi-xunlong/rk-rootfs-build.git" "${EXTER}/cache/sources/rk-rootfs-build-${RELEASE}" "branch:rk-rootfs-build-${RELEASE}"
+		[[ ${BUILD_OPT} == image ]] && fetch_from_repo "https://github.com/orangepi-xunlong/rk-rootfs-build.git" "${EXTER}/cache/sources/rk35xx_packages" "branch:rk35xx_packages"
 
 	fi
 
@@ -510,12 +511,6 @@ if [[ ${IGNORE_UPDATES_} != yes ]]; then
 	*build needed tools for the build, host-side*
 	After sources are fetched, build host-side tools needed for the build.
 	BUILD_HOST_TOOLS
-
-	if [[ ${BOARDFAMILY} == "rockchip-rk3588" ]]; then
-		local rkbin_url="https://github.com/orangepi-xunlong/rk-rootfs-build/raw/rkbin/rk35"
-		wget -nc -P ${EXTER}/cache/sources/rkbin-tools/rk35/ ${rkbin_url}/rk3588_bl31_v1.45_20240422.elf
-	fi
-
 fi
 
 for option in $(tr ',' ' ' <<< "$CLEAN_LEVEL"); do
