@@ -188,6 +188,7 @@ if [[ -z $BOARD ]]; then
 	#options+=("orangepizero2-lts"           "Allwinner H616 quad core 1.5GB RAM WiFi/BT GBE SPI")
 	options+=("orangepizero3"		"Allwinner H618 quad core 1GB/1.5GB/2GB/4GB RAM WiFi/BT GBE SPI")
 	options+=("orangepizero2w"		"Allwinner H618 quad core 1GB/1.5GB/2GB/4GB RAM WiFi/BT SPI")
+	options+=("orangepizero3w"		"Allwinner H618 quad core 1GB/1.5GB/2GB/4GB RAM WiFi/BT SPI")
 	#options+=("orangepizero3plus"		"Allwinner H618 quad core 1GB/1.5GB/2GB/4GB RAM WiFi/BT GBE eMMC")
 	#options+=("orangepir1b"			"Allwinner H618 quad core 1.5GB/2GB/4GB RAM WiFi/BT GBE SPI")
 	#options+=("orangepi400"			"Allwinner H616 quad core 4GB RAM WiFi/BT GBE eMMC VGA")
@@ -212,7 +213,7 @@ if [[ -z $BOARD ]]; then
 	options+=("orangepi6plus"                 "Cix P1 12-core 16-64GB RAM 5GBE USB3 USB-C WiFi/BT NVMe")
 	options+=("orangepirv"                  "Starfive  JH7110 quad core 2-8GB RAM GBE USB3 NvMe WiFi/BT")
 	options+=("orangepirv2"                  "Ky X1 octa core 2-8GB RAM GBE USB3 WiFi/BT NVMe eMMC")
-	#options+=("orangepir2s"                  "Ky X1 octa core 2-8GB RAM 2.5GBE USB3 eMMC")
+	options+=("orangepir2s"                  "Ky X1 octa core 2-8GB RAM 2.5GBE USB3 eMMC")
 	#options+=("orangepir1plus"              "Rockchip  RK3328 quad core 1GB RAM 2xGBE USB2 SPI")
 	#options+=("orangepi3plus"              "Amlogic S905D3 quad core 2/4GB RAM SoC eMMC GBE USB3 SPI WiFi/BT")
 
@@ -459,7 +460,23 @@ if [[ ${IGNORE_UPDATES_} != yes ]]; then
 
 	if [[ $BOARDFAMILY == "cix" ]]; then
 
-		fetch_from_repo "https://github.com/orangepi-xunlong/component_cix-$BRANCH.git" "${EXTER}/cache/sources/component_cix-$BRANCH" "branch:main"
+		if [[ ${GITEE_SERVER} == yes ]]; then
+			fetch_from_repo "https://gitee.com/orangepi-xunlong/component_cix-$BRANCH.git" "${EXTER}/cache/sources/component_cix-$BRANCH" "branch:main"
+
+			if [[ ! -f "${EXTER}/cache/sources/component_cix-$BRANCH/debs/cix-npu-onnxruntime_1.1.0_arm64.deb" ]]; then
+				display_alert "Downloading deb" "cix-npu-onnxruntime" "info"
+				wget -c -t 5 -P "${EXTER}/cache/sources/component_cix-$BRANCH/debs/" \
+				http://www.iplaystore.cn/upload/debs/cix-npu-onnxruntime_1.1.0_arm64.deb
+			fi
+		else
+			fetch_from_repo "https://github.com/orangepi-xunlong/component_cix-$BRANCH.git" "${EXTER}/cache/sources/component_cix-$BRANCH" "branch:main"
+
+			if [[ ! -f "${EXTER}/cache/sources/component_cix-$BRANCH/debs/cix-npu-onnxruntime_1.1.0_arm64.deb" ]]; then
+				display_alert "Downloading deb" "cix-npu-onnxruntime" "info"
+				wget -c -t 5 -P "${EXTER}/cache/sources/component_cix-$BRANCH/debs/" \
+				https://github.com/orangepi-xunlong/component_cix-${BRANCH}/releases/download/v1.1.0/cix-npu-onnxruntime_1.1.0_arm64.deb
+			fi
+		fi
 
 	fi
 
